@@ -1,0 +1,100 @@
+--[[ 
+Set NPC Art of War quotes chat content 
+
+This can be done by using 
+
+{"Text1","Text2","Text3",}, 
+to set up a continuous conversation 
+
+Note that the content in [0] = {} below should not be changed.
+]]-- 
+
+local text = {[0] = {1,1}, 
+
+---------------------- Start adding Art of War quotes chat text here-------------------------
+
+{"The supreme art of war is to subdue the enemy without fighting.", "So… what’s the fun in that?", "Efficiency, not entertainment."},
+{"If you know the enemy and know yourself, you need not fear the result of a hundred battles.", "Does that include knowing what’s for lunch?", "Strategy first, lunch second."},
+{"All warfare is based on deception.", "Is that why rogues are so effective?", "They’re definitely reading *The Art of War*."},
+{"Appear weak when you are strong, and strong when you are weak.", "So… fake it till you make it?", "Classic rogue tactics."},
+{"Opportunities multiply as they are seized.", "So you’re saying I should loot everything?", "Absolutely. Loot is opportunity."},
+{"Victorious warriors win first and then go to war.", "I usually just charge in.", "And that’s why you keep dying."},
+{"He will win who knows when to fight and when not to fight.", "So… I should stop pulling extra mobs?", "Exactly. Learn restraint."},
+{"Let your plans be dark and impenetrable as night.", "Dark plans? Sounds like a warlock’s specialty.", "Or a rogue’s Tuesday."},
+{"Move swift as the wind and closely-formed as the wood.", "And… stand still as a rock?", "Correct. Now you’re thinking like a general."},
+{"In the midst of chaos, there is also opportunity.", "So… chaos is a feature?", "Exactly. Use it to your advantage."},
+{"The greatest victory is that which requires no battle.", "No battle? That’s boring.", "It’s also smart."},
+{"To know your enemy, you must become your enemy.", "So… I should stealth more?", "If it helps, yes."},
+{"When the enemy is relaxed, make them toil.", "Sounds like my mage’s favorite strategy.", "Sheep first, chaos later."},
+{"Energy may be likened to the bending of a crossbow.", "And decision, the release of the bolt.", "Sounds poetic… and deadly."},
+{"He who is prudent and lies in wait for an enemy who is not, will be victorious.", "So patience wins battles?", "Yes. And keeps repair bills low."},
+{"If the mind is willing, the flesh could go on and on without many things.", "Except coffee. Let’s be real.", "True. Coffee is essential."},
+{"A clever fighter is one who not only wins, but excels in winning with ease.", "Winning with ease? Never heard of it.", "That’s why you need strategy."},
+{"The art of war teaches us to rely not on the likelihood of the enemy's coming, but on our readiness to receive him.", "Preparation is boring though.", "And dying is inconvenient."},
+{"Do not repeat the tactics which have gained you one victory, but let your methods be regulated by the infinite variety of circumstances.", "So… don’t spam Frostbolt?", "Exactly. Adapt or fail."},
+{"Treat your men as you would your own beloved sons, and they will follow you into the deepest valley.", "But what if my 'sons' stand in fire?", "Then maybe just lead better."},
+{"Even the finest sword plunged into salt water will eventually rust.", "So… no underwater fights?", "Or no cheap swords."},
+{"The wise warrior avoids the battle.", "But where’s the loot in that?", "Sometimes the best loot is survival."},
+{"Strategy without tactics is the slowest route to victory.", "And tactics without strategy?", "Is the noise before defeat."},
+{"Ponder and deliberate before you make a move.", "That’s just procrastination with extra steps.", "And yet, it works."},
+{"He who wishes to fight must first count the cost.", "Gold? Time? Repair bills?", "All of the above."},
+{"The skillful fighter puts himself into a position which makes defeat impossible.", "Sounds like a tank’s mantra.", "Or just someone who doesn’t stand in fire."},
+{"Engage people with what they expect.", "It is what they are able to discern and confirms their projections.", "What about surprising them?", "Surprise comes after their guard is down."},
+{"In war, the way is to avoid what is strong and strike at what is weak.", "So… kite the boss to the squishy mobs?", "Exactly. Play smart, not hard."},
+{"When strong, avoid them; when active, tire them.", "Basically… PvP in a nutshell.", "Exhaustion is a powerful weapon."},
+{"An army may march great distances without distress.", "If it marches through friendly terrain.", "Friendly terrain? Like with vendors?", "And inns. Don’t forget the inns."},
+{"If his forces are united, separate them.", "Divide and conquer, right?", "It’s the only way to win."},
+{"He who exercises no forethought but makes light of his opponents is sure to be captured by them.", "So, overconfidence is a weakness?", "Always. Plan or perish."},
+{"By reinforcing strengths, you weaken yourself.", "Why?", "Because true power comes from balance.", "Guess I’ll stop stacking crit then."},
+{"He who relies solely on warlike measures shall be exterminated.", "Wait, you mean I can’t just smash things?", "Correct. Brains over brawn."},
+{"Regard your soldiers as your children, and they will follow you into the deepest battles.", "But what if they’re DPS?", "Then just pray they don’t stand in AoE."},
+{"The commander stands for the virtues of wisdom, sincerity, benevolence, courage, and strictness.", "Sounds like a lot of work.", "That’s why leadership is hard."},
+{"In battle, there are no more than two methods of attack—direct and indirect.", "Which one’s better?", "Both, when used together."},
+{"The quality of decision is like the well-timed swoop of a falcon.", "So, it’s all about timing?", "Timing and precision win battles."},
+{"The best victories come from knowing when to act and when to wait.", "Patience isn’t my strong suit.", "That’s why you’re still learning."},
+{"Attack him where he is unprepared.", "Appear where you are not expected.", "Basically, be a rogue.", "Or an annoying mage."},
+{"The general who advances without coveting fame and retreats without fearing disgrace is the jewel of the kingdom.", "But where’s the loot in that?", "Sometimes, loot is overrated."},
+{"Plan for what is difficult while it is easy.", "So prep work matters?", "It’s the only thing that keeps you alive."},
+{"The line between disorder and order lies in logistics.", "So… who handles the guild bank?", "Whoever has the patience of a saint."},
+{"Victory is reserved for those who are willing to pay its price.", "Gold? Time? Repair bills?", "Yes. All of that and more."},
+{"A good commander is benevolent and unconcerned with fame.", "I prefer commanders who win loot rolls.", "That’s… not how it works."},
+{"The clever combatant imposes his will on the enemy but does not allow the enemy’s will to be imposed on him.", "Sounds like PvP.", "It’s the ultimate chess game."},
+{"Speed is the essence of war.", "But isn’t caution more important?", "Balance both, or lose both."},
+{"The greatest secrets are hidden in plain sight.", "Like where the rogue is hiding?", "Exactly. Or where the loot is."},
+{"A wise general uses all resources at his disposal.", "Even the annoying gnome?", "Especially the annoying gnome. They’re great distractions."},
+{"Do not press a desperate foe too hard.", "Why not?", "Desperation makes even the weakest dangerous."},
+{"Let your enemies underestimate you.", "But isn’t confidence better?", "Only when it’s earned."},
+{"He who knows the art of the direct and the indirect approach will be victorious.", "So… ambush first, then fight?", "Exactly. Surprise wins battles."},
+{"The wise warrior avoids the battle altogether.", "But where’s the loot in that?", "Survival is the ultimate loot."},
+{"When the enemy is close at hand and remains quiet, they are relying on their position.", "Quiet enemies are the scariest.", "Or they’re just planning something big."},
+{"Do not engage an enemy that is stronger than you.", "What about kiting?", "Only if you enjoy running for your life."},
+{"There is no instance of a country having benefited from prolonged warfare.", "So no grinding mobs endlessly?", "Exactly. Efficiency over endurance."},
+{"If your forces are united, do not divide them.", "But splitting the group is faster!", "Only if you like chaos and repair bills."},
+{"Success in warfare is gained by carefully accommodating oneself to the enemy's strategy.", "So… mimic their tactics?", "Or counter them intelligently."},
+{"The control of a large force is the same principle as the control of a few men.", "Sounds simple enough.", "Until someone stands in fire."},
+{"The clever fighter avoids unnecessary risks.", "But what about YOLO pulls?", "Those are the opposite of clever."},
+{"Who wishes to fight must first calculate the cost.", "Gold? Mana? Patience?", "All of the above, and then some."},
+{"The art of war is a matter of life and death.", "So, no pressure then?", "Exactly. Just don’t mess up."},
+{"When you surround an army, leave an outlet free.", "Why would you do that?", "To avoid making desperation their strength."},
+{"A skilled commander uses a combination of rewards and punishments.", "So loot for the good, and repair bills for the bad?", "You’re starting to get it."},
+{"The supreme skill is to disrupt the enemy without fighting.", "Sounds like a job for a warlock.", "Or a really annoying mage."},
+{"Build your opponent a golden bridge to retreat across.", "What’s the point of that?", "It’s better to let them leave than fight to the death."},
+{"A true warrior learns from every defeat.", "What if you lose a lot?", "Then you’re learning a lot, too."},
+{"All men can see the tactics by which I conquer.", "But none can see the strategy behind those tactics.", "So, it’s all about keeping them guessing.", "Exactly."},
+{"When in difficult terrain, move swiftly.", "But what about exploration?", "There’s no time for sightseeing when survival’s on the line."},
+{"If you lay siege to a town, exhaust them before attacking.", "Sounds boring.", "It’s smarter than charging straight in."},
+{"The wise general is neither easily provoked nor easily deterred.", "So… calm under pressure?", "Exactly. Hotheads don’t last long."},
+{"Let your plans be flexible and adaptable.", "What about sticking to a strategy?", "A rigid strategy is a losing strategy."},
+{"He who strikes at the right moment is invincible.", "But what if I miss the moment?", "Then you’ve already lost."},
+{"The expert in battle moves the enemy and is not moved by them.", "So I should lead, not follow?", "Exactly. Control is everything."},
+{"Water shapes its course according to the ground over which it flows.", "Adapt like water, right?", "Yes. The flexible conquer the rigid."},
+{"It is better to retreat and preserve your strength.", "But retreating feels like losing!", "It’s not. It’s preparation for a better fight."},
+{"Those who understand warfare win with ease.", "Sounds nice in theory.", "That’s why practice is key."},
+{"Conceal your intentions, and they will be caught off guard.", "Does stealth count?", "It’s the ultimate concealment."},
+{"Even the mightiest fortress falls without morale.", "So, keep the group happy?", "Exactly. Discontent leads to defeat."},
+
+---------------------- End Art of War quotes chat text here-------------------------
+
+}
+
+return text

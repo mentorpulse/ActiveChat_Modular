@@ -3,7 +3,6 @@ If the NPC in the database is empty, take the name from here.
 
 ]]--
 
-
 return {
     "Aethersworn",
     "Blazebinder",
@@ -237,7 +236,10 @@ return {
     "Wildstorm",
     "Xenoblade",
     "Yewblossom",
-    "Zephyrheart"
+    "Zephyrheart",
+    "Mentor",
+    "Carbomb",
+    "Tristan"
 }
 
  

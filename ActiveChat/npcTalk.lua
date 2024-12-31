@@ -135,7 +135,7 @@ local instances = {
 
 local roles = {"Tank", "Healer", "DPS"}
 
-local classes = {    "Warrior", "Mage", "Rogue", "Priest", "Hunter", 
+local classes = {"Warrior", "Mage", "Rogue", "Priest", "Hunter", 
     "Paladin", "Shaman", "Warlock", "Druid", "Death Knight"
 }
 
@@ -163,10 +163,56 @@ local function selectRandomBattleground()
     return battlegrounds[math.random(#battlegrounds)]
 end
 
+--change to make the chat files more modular where chats can be grouped by themes
+-- Function to load all Lua files from a directory
+local function loadChatModules(baseDir)
+    local combinedText = {[0] = {1, 1}} -- Initialize metadata to avoid nil errors
+
+    -- Determine the OS and use the appropriate command
+    local command = package.config:sub(1, 1) == "\\" and 'dir "' .. baseDir .. '" /b' or 'ls "' .. baseDir .. '"'
+
+    local p = io.popen(command)
+    if not p then
+        print("Error: Could not open directory: " .. baseDir)
+        return combinedText
+    end
+
+    for file in p:lines() do
+        if file:match("^npc_text_[a-zA-Z0-9_]+%.lua$") then
+            local modulePath = baseDir .. "/" .. file
+            local success, moduleData = pcall(dofile, modulePath)
+            if success and type(moduleData) == "table" then
+                for _, line in ipairs(moduleData) do
+                    table.insert(combinedText, line)
+                end
+            else
+                print("Warning: Failed to load module:", modulePath, moduleData)
+            end
+        end
+    end
+    p:close()
+    return combinedText
+end
+
+-- Load normal chat and guild chat modules
+local normalChat = loadChatModules("lua_scripts/ActiveChat/talk_text/normal") -- Update to your directory
+local guildChat = loadChatModules("lua_scripts/ActiveChat/talk_text/guild")
+
+-- Ensure fallback initialization to avoid nil errors
 t.t = {
-    talk = require("npc_text"),
-    guild_talk = require("npc_text_guild"),
+    talk = normalChat or {[0] = {1, 1}}, -- Fallback for normal chat
+    guild_talk = guildChat or {[0] = {1, 1}}, -- Fallback for guild chat
 }
+
+-- Add debug output for troubleshooting
+if not next(t.t.talk) then
+    print("Error: 'talk' table is empty or nil.")
+end
+if not next(t.t.guild_talk) then
+    print("Error: 'guild_talk' table is empty or nil.")
+end
+
+--end changes
 
 t.cc = {"C79C6E","F58CBA","ABD473","FFF569","FFFFFF","C41F3B","0070DE","69CCF0","9482C9","FF7d0A" }
 
