@@ -1,6 +1,29 @@
-# Eluna Lua Script: Lively World & Guild Chat
+# Eluna Lua Script: Lively World & Guild Chat Modular Fork
 
 This script is designed for AzerothCore using Eluna Lua scripting to simulate world and guild chat environment. It's intended single-player servers, adding a layer of immersion and social interaction by populating the chat with artificial conversations between non-existent players. This makes the game world feel more populated and lively. 
+This fork takes the original design and builds upon it by seperating out the different chats into themed lua modules. The script will take these modules combine them and then randomly disperse them through the normal world chats and guild chats.
+
+The directory of this fork is different. You have the talk_text directory which then seperates into two other directories:
+normal - world chats
+guild - guild chats
+
+In both of these directories is a variety of chat modules that have specific themes like:
+talk_text > guild > npc_text_guild_announcements.lua 
+talk_text > guild > npc_text_guild_drama.lua 
+talk_text > guild > npc_text_guild_leadership.lua
+talk text > normal > npc_text_ganking_reports.lua
+talk text > normal > npc_text_comedy.lua
+talk text > normal > npc_text_questing_mishaps.lua
+
+If you want to create your own themed chat modules follow the simple format internal to the file and also the naming convention of
+npc_text_[theme].lua
+npc_text_guild_[theme].lua
+
+The format of the file internally is important as well as the first part of the naming convention and file extension.
+
+It's important to note that you cannot have two modules of the same name in different folders as lua will refuse to load them.
+
+If you don't like a module feel free to remove it. Mix and match and change the content to your hearts content.
 
 Note: I am not the original author. If you are the original author please contact me so I can give you proper credit. I just modified and made things better. 
 
