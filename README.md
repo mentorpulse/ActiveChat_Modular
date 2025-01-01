@@ -1,98 +1,109 @@
 # Eluna Lua Script: Lively World & Guild Chat Modular Fork
 
-This script is designed for AzerothCore using Eluna Lua scripting to simulate world and guild chat environment. It's intended single-player servers, adding a layer of immersion and social interaction by populating the chat with artificial conversations between non-existent players. This makes the game world feel more populated and lively. 
-This fork takes the original design and builds upon it by seperating out the different chats into themed lua modules. The script will take these modules combine them and then randomly disperse them through the normal world chats and guild chats.
+This script is designed for AzerothCore using Eluna Lua scripting to simulate a lively world and guild chat environment. It is intended for single-player servers, adding immersion and social interaction by populating the chat with artificial conversations between non-existent players. This fork expands on the original by modularizing different chat themes into separate Lua modules, which are then combined and randomly distributed into world and guild chats.
 
-The directory of this fork is different. You have the talk_text directory which then seperates into two other directories:
-normal - world chats
-guild - guild chats
+---
 
-In both of these directories is a variety of chat modules that have specific themes like:
-talk_text > guild > npc_text_guild_announcements.lua 
-talk_text > guild > npc_text_guild_drama.lua 
+## Directory Structure
+
+This fork organizes chat modules into two directories within the `talk_text` folder:
+
+- **normal**: World chats
+- **guild**: Guild chats
+
+Each directory contains modules with specific themes, such as:
+
+```
+talk_text > guild > npc_text_guild_announcements.lua
+talk_text > guild > npc_text_guild_drama.lua
 talk_text > guild > npc_text_guild_leadership.lua
-talk text > normal > npc_text_ganking_reports.lua
-talk text > normal > npc_text_comedy.lua
-talk text > normal > npc_text_questing_mishaps.lua
+talk_text > normal > npc_text_ganking_reports.lua
+talk_text > normal > npc_text_comedy.lua
+talk_text > normal > npc_text_questing_mishaps.lua
+```
 
-If you want to create your own themed chat modules follow the simple format internal to the file and also the naming convention of
+If you want to create your own themed chat modules, follow the simple format and naming convention:
+
+```
 npc_text_[theme].lua
 npc_text_guild_[theme].lua
+```
 
-The format of the file internally is important as well as the first part of the naming convention and file extension.
+**Important:** Avoid duplicate module names in different folders, as Lua will not load them.
 
-It's important to note that you cannot have two modules of the same name in different folders as lua will refuse to load them.
-
-If you don't like a module feel free to remove it. Mix and match and change the content to your hearts content.
-
-Note: I am not the original author. If you are the original author please contact me so I can give you proper credit. I just modified and made things better. 
-
-If you do happen to expand on the text, please make a pull request so we can all share in the fun.
-
-![Active Chat](https://i.postimg.cc/fRvLKM1W/Capture.png)
-
-## Installation
-- This script requires the Eluna module for your server.
-- Simply download the zip and extract the folder to your server's lua_scripts folder.
+---
 
 ## Features
 
-- **Artificial World and Guild Chat**: Mimics live conversations in both world and guild chat channels.
+- **Artificial World and Guild Chat**: Mimics live conversations in world and guild chat channels.
 - **Interactive Chats**: Includes back-and-forth dialogues between fake players.
-- **Customizable Text Tables**: Comes with a variety of predefined texts that can be easily expanded or modified to suit your desires.
-- **Extendable and Modifiable**: Designed with flexibility in mind, allowing you to easily add new content or adjust existing tables.
+- **Customizable and Extendable**: Add or modify text tables easily.
+- **Predefined Themes**: Comes with various themed modules to enhance immersion.
+
+---
+
+## Installation
+
+1. Ensure the Eluna module is installed on your server.
+2. Download the script and extract it to your server's `lua_scripts` folder.
+
+---
 
 ## Configuration
 
-The script is easily configurable with simple variables:
+The script can be configured with simple variables:
 
 ```lua
 local enableScript = true  -- Enable or disable the script
-local talk_time = {1000,10000} -- World chat interval (ms)
-local guild_talk_time = {10000,30000} -- Guild chat interval (ms)
+local talk_time = {1000, 10000} -- World chat interval (ms)
+local guild_talk_time = {10000, 30000} -- Guild chat interval (ms)
 ```
 
-## Content Tables
-The script includes a wide range of predefined, randomly picked content, such as:
+---
 
-- Zones
-- Instances
-- Roles and Classes
-- Battlegrounds
+## Adding Content
 
-To add new text to npc_text.lua and npc_text_guild.lua, follow these steps to ensure your additions are correctly formatted and integrated into the script. The examples provided give a template for how to structure your new chat lines and interactive chats.
+### Steps to Add New Chat Lines
 
-## Adding to npc_text.lua and npc_text_guild.lua
-1. Open the npc_text.lua or npc_text_guild.lua file in Notepad++.
-2. Locate the section where chat text is added.
-3. To add a simple chat line, just insert a new line with your text enclosed in quotes, followed by a comma. For example:
+1. Open the appropriate Lua file (e.g., `npc_text.lua` or `npc_text_guild.lua`) in a text editor.
+2. Add a new chat line:
 
-```lua
-"This is a new world chat message.",
-```
+   ```lua
+   "This is a new world chat message,",
+   ```
 
-4. For interactive or multi-line chats, use curly braces {} to group the lines together, with each line as a string within the braces, separated by commas. For instance:
-```lua
-{"This is the first line of an interactive chat.", "This is the response or the next line.", "And this could be a witty comeback or conclusion."},
-```
-5. Ensure each new entry is separated by a comma from the previous one.
+3. For multi-line chats or dialogues:
 
-To use zone, dungeon, class, and role placeholders in your chat system, you'll need to integrate these elements into the chat text. These placeholders allow the script to insert relevant game information into the chat lines, drawing from random relevant placeholders, making the conversations feel more varied.
+   ```lua
+   {"First line of chat.", "Second line of chat.", "Third line."},
+   ```
 
-Random Placeholders:
+4. Save your changes.
 
-- %zone% for random listed game zone.
-- %instance% for random listed dungeons or raids.
-- %class% for random player classes.
-- %role% for random player roles (Tank, DPS, Healer).
-- %bg% for various battlegrounds
-- %zone% for various zones
+### Using Placeholders
 
-Example chat line with placeholders:
+You can use placeholders in chat text to make conversations feel dynamic. The script replaces these placeholders with random game-related content:
+
+- `%zone%`: Random game zone
+- `%instance%`: Random dungeon or raid
+- `%class%`: Random player class
+- `%role%`: Random player role (Tank, DPS, Healer)
+- `%bg%`: Random battleground
+
+**Example:**
 
 ```lua
-Copy code
 "Looking for more for %instance%, need a %role% and two %class%s."
 ```
 
-These placeholders will iterate through the appropriate table and randomly insert appropriate text.
+---
+
+## Contributing
+
+If you create new modules or expand on existing text, please submit a pull request to share your additions with the community. 
+
+**Note:** This is a modified fork. If you are the original author, contact me for proper credit.
+
+---
+
+![Active Chat](https://i.postimg.cc/fRvLKM1W/Capture.png)
