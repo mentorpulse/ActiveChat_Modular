@@ -1,16 +1,21 @@
 local enableScript = true  -- Set to true to enable the script, false to disable
 local enableGuildChat = true -- Set to true to enable guild chat, false to disable
+local debugMode = false -- Toggle debug mode to log chats in the console
 
 if enableScript then
 
+print("[Info] npcTalk.lua script has started processing.")
+
+-- Define chat spam time intervals in milliseconds
 local talk_time = {1000,10000} -- Chat spam time interval: 1 second = 1000
 local guild_talk_time= {10000,30000} -- Guild chat spam time interval: 1 second = 1000
-local ns = ""  
--- Select data from the database as the source of npc names. If left blank, use the name set in npc_name.lua.
 
+
+-- Select data from the database as the source of npc names. If left blank, use the name set in npc_name.lua.
+local ns = ""  
 local t = {}
 
--- List of zones
+-- Zones list for placeholder replacements
 local zones = {
     "Elwynn Forest", "Westfall", "Redridge Mountains", "Duskwood", "Loch Modan",
     "Wetlands", "Dun Morogh", "Searing Gorge", "Burning Steppes", "The Hinterlands",
@@ -29,6 +34,7 @@ local zones = {
     "Uldum", "Twilight Highlands", "Tol Barad"
 }
 
+-- Instances list for placeholder replacements
 local instances = {
     -- Vanilla
     "RFC", -- Ragefire Chasm
@@ -134,15 +140,10 @@ local instances = {
 
 
 local roles = {"Tank", "Healer", "DPS"}
+local classes = {"Warrior", "Mage", "Rogue", "Priest", "Hunter", "Paladin", "Shaman", "Warlock", "Druid", "Death Knight"}
+local battlegrounds = {"WG", "AV", "WSG", "AB", "Strand", "Isle of Conquest", "EoS"}
 
-local classes = {"Warrior", "Mage", "Rogue", "Priest", "Hunter", 
-    "Paladin", "Shaman", "Warlock", "Druid", "Death Knight"
-}
-
-local battlegrounds = {"WG", "AV", "WSG", "AB", "Strand", "Isle of Conquest", "EoS"
-}
-
--- Function to randomly select a zone
+-- Utility Functions to randomly select a zone, instance, role, class, battleground
 local function selectRandomZone()
     return zones[math.random(#zones)]
 end
@@ -163,8 +164,8 @@ local function selectRandomBattleground()
     return battlegrounds[math.random(#battlegrounds)]
 end
 
---change to make the chat files more modular where chats can be grouped by themes
--- Function to load all Lua files from a directory
+print("[Info] npcTalk.lua script is processing chat modules")
+-- Modular chat loader for dynamic theme-based chats
 local function loadChatModules(baseDir)
     local combinedText = {[0] = {1, 1}} -- Initialize metadata to avoid nil errors
 
@@ -194,17 +195,19 @@ local function loadChatModules(baseDir)
     return combinedText
 end
 
--- Load normal chat and guild chat modules
+-- Load chat modules
 local normalChat = loadChatModules("lua_scripts/ActiveChat/talk_text/normal") -- Update to your directory
 local guildChat = loadChatModules("lua_scripts/ActiveChat/talk_text/guild")
 
--- Ensure fallback initialization to avoid nil errors
+print("[Info] npcTalk.lua script has completed processing chat modules")
+
+-- Initialize chat tables with fallback to prevent nil errors
 t.t = {
     talk = normalChat or {[0] = {1, 1}}, -- Fallback for normal chat
     guild_talk = guildChat or {[0] = {1, 1}}, -- Fallback for guild chat
 }
 
--- Add debug output for troubleshooting
+-- Debugging for empty tables
 if not next(t.t.talk) then
     print("Error: 'talk' table is empty or nil.")
 end
@@ -212,10 +215,10 @@ if not next(t.t.guild_talk) then
     print("Error: 'guild_talk' table is empty or nil.")
 end
 
---end changes
-
+-- Color codes for chat messages
 t.cc = {"C79C6E","F58CBA","ABD473","FFF569","FFFFFF","C41F3B","0070DE","69CCF0","9482C9","FF7d0A" }
 
+-- NPC names initialization
 t.init = function(s)
     math.randomseed(tostring(os.time()):reverse():sub(1, 7))
     s.d = require("npc_name") or {}
@@ -230,6 +233,7 @@ t.init = function(s)
 end
 t:init()
 
+-- Generate next chat line
 t.fg = function(s, talkType)
     math.randomseed(tostring(os.time()):reverse():sub(1, 7))
     local i = math.random(#s.t[talkType])
@@ -243,7 +247,7 @@ t.fg = function(s, talkType)
     end
 end
 
--- Modified function to generate current chat text
+-- Dynamic chat line retrieval and placeholder replacements
 t.dt = function(s, talkType)
     local i = s.t[talkType][0][1]
     local ti = s.t[talkType][0][2]
@@ -270,13 +274,13 @@ t.dt = function(s, talkType)
     return t
 end
 
--- Create a public chat event
+-- Schedule public chat events
 CreateLuaEvent(function()
     local n = t.d[math.random(#t.d)]
     SendWorldMessage(string.format("|cFFFFC0C0[World] |r|cff%s|Hplayer:%s|h[%s]|h|r: |cFFFFC0C0%s|r", t.cc[math.random(#t.cc)], n, n, t:dt("talk")))
 end, {talk_time[1], talk_time[2]}, 0)
 
--- Create a guild chat event
+-- Schedule guild chat events if enabled
     if enableGuildChat then
         CreateLuaEvent(function()
             local n = t.d[math.random(#t.d)]
@@ -308,3 +312,4 @@ end, {talk_time[1], talk_time[2]}, 0)
 --    end
 --end)
 end
+print("[Info] npcTalk.lua script has completed processing")
